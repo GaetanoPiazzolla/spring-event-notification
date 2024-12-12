@@ -13,8 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -34,9 +32,6 @@ public class EventNotificationResponseBodyAdvice implements ResponseBodyAdvice<O
     }
 
     @Override
-    // we need a new transaction to be able to write in "EVENT_PUBLICATION" table.
-    // in here we are outside the transaction that is handling the request.
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Object beforeBodyWrite(
             Object body,
             MethodParameter returnType,
