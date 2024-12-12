@@ -1,0 +1,8 @@
+events:
+  notification-enabled: false
+  notification-response-enabled: false
+
+logging:
+  level:
+    gae.piaz: TRACE
+
